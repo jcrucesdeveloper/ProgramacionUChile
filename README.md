@@ -1,5 +1,4 @@
 # ProgramacionUChile
-Listado de programas/tareas de programación de la Universidad de Chile - FCFM DCC
 
 Tareas de programación hechas para ramos del Departamento de Computación (DCC).
 
