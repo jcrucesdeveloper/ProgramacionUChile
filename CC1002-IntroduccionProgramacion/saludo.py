@@ -2,10 +2,12 @@
 # Determinar el saludo de acuerdo a la hora del dia 1 <= hora <= 24 
 # ejemplos: saludo(11) debe devolver Buenos dias!
 # saludo(15) debe devolver Buenas tardes
+from saludoFunciones import *
+
 def saludo(hora):
-    if (hora < 12):
+    if buenosDias(hora):
         return 'Buenos dias!'
-    elif (hora < 21):
+    elif buenasTardes(hora):
         return 'Buenas tardes!'
     else: 
         return 'Buenas noches!'
