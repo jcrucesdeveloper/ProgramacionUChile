@@ -12,5 +12,13 @@ def mayor(x,y):
     else: 
         return y
 
+def esPar(x):
+    if x % 2 == 0:
+        return True
+    else: 
+        return False
+
+print(esPar(400))
 print(azar(1,20))        
 print(mayor(2,40))
+
