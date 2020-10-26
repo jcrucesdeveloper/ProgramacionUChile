@@ -1,0 +1,88 @@
+# Modulo para ser implementado en tarea2.py
+import estructura
+from lista import *
+from abstraccion import *
+
+estructura.crear("resultadoMesa","circunscripcion mesa apruebo rechazo")
+
+# buscaMesa: lista(resultadoMesa) str num -> resultadoMesa
+# Busca una mesa dentro de una lista de mesas
+# Ejemplo: siendo L una lista de mesas,
+# si buscamos buscaMesa(L,"San Miguel",2) debe entregar resultadoMesa("San Miguel",2,200,60)
+def buscaMesa(L,circu,num_mesa):
+    if vacia(L):
+        return None
+    else:
+        if cabeza(L).circunscripcion == circu and cabeza(L).mesa == num_mesa:
+            return cabeza(L)
+        else: 
+            return buscaMesa(cola(L),circu,num_mesa)
+# Tests
+r1 = resultadoMesa("Santiago",3,100,20)
+r2 = resultadoMesa("San Miguel",2,200,60)
+L = crearLista(r1,crearLista(r2,listaVacia))
+assert buscaMesa(L,"Santiago",3) == resultadoMesa("Santiago",3,100,20)
+assert buscaMesa(L,"San Miguel",2) == resultadoMesa("San Miguel",2,200,60)
+assert buscaMesa(L,"Quilicura",32) == None
+
+
+# agregaMesa: lista(resultadoMesa) resultadoMesa -> lista(resultadoMesa)
+# agrega un resultado mesa al inicio de una lista de resultados mesa
+# si el resultado mesa que se intenta agregar ya se encuentra en la lista
+# simplemente retornamos la lista inicial
+# Ejemplo: 
+# r1 = resultadoMesa("Santiago",3,100,20)
+# r2 = resultadoMesa("San Miguel",2,200,60)
+# r3 = resultadoMesa("Putre",23,331232,1)
+# L = crearLista(r1,crearLista(r2,listaVacia))
+# agregaMesa(L,r3) debe devolver una lista con r3,r1,r2 en ese orden
+#####
+def agregaMesa(L,r):
+    if buscaMesa(L,r.circunscripcion,r.mesa):
+        return L
+    else:
+        return crearLista(r,L)
+# Tests
+r1 = resultadoMesa("Santiago",3,100,20)
+r2 = resultadoMesa("San Miguel",2,200,60)
+r3 = resultadoMesa("Putre",23,331232,1)
+L = lista(r1,listaVacia)
+assert agregaMesa(L,r2) == lista(resultadoMesa("San Miguel",2,200,60),lista(resultadoMesa("Santiago",3,100,20),listaVacia))
+assert agregaMesa(L,r3) == lista(resultadoMesa("Putre",23,331232,1),lista(resultadoMesa("Santiago",3,100,20),listaVacia))
+assert agregaMesa(L,r1) == lista(resultadoMesa("Santiago",3,100,20),listaVacia)
+
+
+def mayor(r1,r2):
+    return (r1.apruebo + r1.rechazo) > (r2.apruebo + r2.rechazo)
+
+def mesaConMasVotos(L):
+    if vacia(L):
+        return None
+    else:
+        if filtro(mayor,cola(L),cabeza(L)) == listaVacia:
+            return cabeza(L)
+        else:
+            return mesaConMasVotos(cola(L))
+# Tests
+r3 = resultadoMesa("Santiago",3,100,20)
+r2 = resultadoMesa("San Miguel",2,200,60)
+r1 = resultadoMesa("Putre",23,331232,1)
+L = lista(r2,lista(r1,listaVacia))
+
+print(mesaConMasVotos(L))
+
+
+
+
+"""
+# Receta de disenno
+def resultadosCircuncripcion:
+
+
+# Receta de disenno
+def totalesPorCrincunscripcion:
+
+
+# Receta de disenno
+def totalVotosFinales:
+"""
