@@ -25,3 +25,11 @@ def totalCarrito(unaLista):
 # Programa principal
 carrito = lista(producto("cafe", 2500, 2), lista(producto("aceite", 5000, 1), None))
 print (totalCarrito(carrito))
+
+# Tests
+carrito = lista(producto("cafe", 2500, 2), lista(producto("aceite", 5000, 1), None))
+carrito1 = lista(producto("cafe", 5000, 2), lista(producto("aceite", 10, 1), None))
+carrito2 = lista(producto("queso", 20, 2), lista(producto("pan", 5000, 1), None))
+assert totalCarrito(carrito) == 10000
+assert totalCarrito(carrito1) == 10010
+assert totalCarrito(carrito2) == 5040
